@@ -7,7 +7,6 @@ import "./App.css";
 import HeadShot from "./assets/missionary.jpg";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [selectedOption, setSelectedOption] = useState("missionary");
 
   return (
