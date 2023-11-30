@@ -10,18 +10,18 @@ import {
 } from "chart.js";
 
 const labels = [
-  "1/1",
-  "1/2",
-  "1/3",
-  "1/4",
-  "1/5",
-  "1/6",
-  "1/7",
-  "1/8",
-  "1/9",
-  "1/10",
-  "1/11",
-  "1/12",
+  "Jan 1",
+  "Jan 2",
+  "Jan 3",
+  "Jan 4",
+  "Jan 5",
+  "Jan 6",
+  "Jan 7",
+  "Jan 8",
+  "Jan 9",
+  "Jan 10",
+  "Jan 11",
+  "Jan 12",
 ];
 
 ChartJS.register(
