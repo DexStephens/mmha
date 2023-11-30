@@ -5,6 +5,7 @@ import { Line } from "react-chartjs-2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import HeadShot from "./assets/missionary.jpg";
+import LeaderView from "./LeaderView";
 
 function App() {
   const [selectedOption, setSelectedOption] = useState("missionary");
@@ -69,9 +70,7 @@ function App() {
         </>
       ) : (
         //Mission Leader View
-        <div>
-          <h1>This is the Mission Leader View</h1>
-        </div>
+        <LeaderView />
       )}
     </>
   );
