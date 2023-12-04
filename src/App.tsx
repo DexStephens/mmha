@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import HeadShot from "./assets/missionary.jpg";
 import LeaderView from "./LeaderView";
+import { Link } from "react-router-dom";
 
 function App() {
   const [selectedOption, setSelectedOption] = useState("missionary");
@@ -56,9 +57,9 @@ function App() {
                   marginRight: "35px",
                 }}
               >
-                <button type="button" className="btn btn-outline-dark btn-sm">
+                <Link type="button" className="btn btn-outline-dark btn-sm" to="/survey">
                   Take Daily Survey
-                </button>
+                </Link>
               </div>
             </div>
             <div style={{ width: "100%", height: "70%", textAlign: "center" }}>
