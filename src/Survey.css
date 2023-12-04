@@ -1,0 +1,11 @@
+#surveyH1 {
+    color: blue;
+}
+
+.feelingEmoji {
+    font-size: 150px;
+}
+
+.feelingEmoji:hover {
+    cursor: pointer
+}

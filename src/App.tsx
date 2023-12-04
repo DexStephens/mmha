@@ -2,9 +2,9 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ProfilePage from "./profile/profilePage";
+import LeaderView from "./LeaderView";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [selectedOption, setSelectedOption] = useState("missionary");
 
   return (
@@ -35,9 +35,7 @@ function App() {
         </>
       ) : (
         //Mission Leader View
-        <div>
-          <h1>This is the Mission Leader View</h1>
-        </div>
+        <LeaderView />
       )}
     </>
   );

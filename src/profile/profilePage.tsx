@@ -5,6 +5,7 @@ import { Line } from "react-chartjs-2";
 import StressAnxiety from "../personalizedResources/stressAnxiety";
 import SadnessDepression from "../personalizedResources/sadnessDepression";
 import WaysToConnect from "../personalizedResources/waysToConnect";
+import { Link } from "react-router-dom";
 
 function ProfilePage() {
   return (
@@ -31,9 +32,9 @@ function ProfilePage() {
               marginRight: "35px",
             }}
           >
-            <button type="button" className="btn btn-outline-dark btn-sm">
+            <Link type="button" className="btn btn-outline-dark btn-sm" to="/survey">
               Take Daily Survey
-            </button>
+            </Link>
           </div>
         </div>
         <div style={{ width: "100%", height: "70%", textAlign: "center" }}>
