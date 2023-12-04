@@ -42,7 +42,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: yellow;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -65,4 +65,25 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+caption {
+  caption-side: top;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px; /* Adjust as needed */
 }
