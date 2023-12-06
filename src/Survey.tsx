@@ -1,80 +1,95 @@
-import React, { useState } from 'react'
+import { useContext, useState } from 'react'
 import "./Survey.css"
+import { SurveyContext } from './main';
+import { useNavigate } from 'react-router-dom';
 
 export function Survey() {
-  const [numericValue, setNumericValue] = useState(5); // Initial value set to 5
-  const [booleanValue, setBooleanValue] = useState(false); // Initial value set to false
+  const [physical, setPhysical] = useState('6')
+  const [emotion, setEmotion] = useState(1)
   const [accomplishment, setAccomplishment] = useState('')
-  const [feeling, setFeeling] = useState('normal')
   const [date, setDate] = useState('')
-  const [emotion, setEmotion] = useState(3)
+  const [spiritual, setSpiritual] = useState(3)
 
-  const handleNumericChange = (event) => {
-    // Ensure the numeric value is within the 1-10 range
-    const newValue = Math.min(10, Math.max(1, parseInt(event.target.value, 10)));
-    setNumericValue(newValue);
-  };
+  const surveyContext = useContext(SurveyContext)
 
-  const handleBooleanChange = () => {
-    setBooleanValue(!booleanValue); // Toggle the boolean value
-  };
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
-    //NEEDSWORK: where do I submit this to??
+    surveyContext?.setSurveys({dates: [...surveyContext.surveys.dates, date], emotional: {
+      scores: [...surveyContext.surveys.emotional.scores, emotion]
+    },
+    physical: {
+      scores: [...surveyContext.surveys.physical.scores, parseInt(physical)]
+    }, 
+    spiritual: {
+      scores: [...surveyContext.surveys.spiritual.scores, spiritual]
+    }})
+    navigate('/')
   }
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-      <h1>Emotional Survey</h1>
-      <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-        <h4>How did you feel today emotionally?</h4>
-        <div style={{display: 'flex'}}>
-          {/* Emojis here */}
-          <h1 className='feelingEmoji' onClick={() => setEmotion(1)}>😣</h1>
-          <h1 className='feelingEmoji' onClick={() => setEmotion(2)}>🙁</h1>
-          <h1 className='feelingEmoji' onClick={() => setEmotion(3)}>😐</h1>
-          <h1 className='feelingEmoji' onClick={() => setEmotion(4)}>🙂</h1>
-          <h1 className='feelingEmoji' onClick={() => setEmotion(5)}>😀</h1>
-        </div>
-      </div>
-
-      <br />
-
-      <label>
-        How did you feel today physically?
-        <select value={feeling} onChange={(event) => setFeeling(event.currentTarget.value)}>
-          <option value="energized">Energized</option>
-          <option value="good">Good</option>
-          <option value="normal">Normal</option>
-          <option value="tired">Tired</option>
-          <option value="sick">Sick</option>
-          <option value="exhausted">Exhausted</option>
-        </select>
-      </label>
-
-      <br />
-
-      <label>
-        What accomplishments can I recognize from the day:
-        <input type="text"
-        value={accomplishment}
-        onChange={(event) => setAccomplishment(event.currentTarget.value)}/>
-      </label>
-
-      <br />
-
-      <label>
-        Date Input:
-        <input
-          type="date"
-          value={date}
-          onChange={(event) => setDate(event.currentTarget.value)}
-        />
-      </label>
-
-      <br />
-      
-      <button onClick={handleSubmit}>Submit</button>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontFamily: 'Arial, sans-serif' }}>
+  <h1 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#333' }}>Emotional Survey</h1>
+  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: '1.5rem' }}>
+    <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#555' }}>How did you feel today emotionally?</h4>
+    <div style={{ display: 'flex' }}>
+      {/* Emojis here */}
+      {[1, 2, 3, 4, 5].map((num) => (
+        <h1 key={num} className={emotion === num ? 'selectedEmoji' : 'feelingEmoji'} onClick={() => setEmotion(num)} style={{ fontSize: '2rem', margin: '0.2rem', cursor: 'pointer' }}>
+          {num === 1 ? '😣' : num === 2 ? '🙁' : num === 3 ? '😐' : num === 4 ? '🙂' : '😀'}
+        </h1>
+      ))}
     </div>
+  </div>
+
+  <label style={{ marginBottom: '1rem', color: '#555' }}>
+    How did you feel today physically?
+    <select
+      value={physical}
+      onChange={(event) => setPhysical(event.currentTarget.value)}
+      style={{ marginLeft: '0.5rem', padding: '0.3rem', fontSize: '1rem' }}
+    >
+      <option value="10">Energized</option>
+      <option value="8">Good</option>
+      <option value="6">Normal</option>
+      <option value="4">Tired</option>
+      <option value="2">Sick</option>
+      <option value="0">Exhausted</option>
+    </select>
+  </label>
+
+  <label style={{ marginBottom: '1rem', color: '#555' }}>
+    What accomplishments can I recognize from the day:
+    <input
+      type="text"
+      value={accomplishment}
+      onChange={(event) => setAccomplishment(event.currentTarget.value)}
+      style={{ marginLeft: '0.5rem', padding: '0.3rem', fontSize: '1rem', width: '100%' }}
+    />
+  </label>
+
+  <label style={{ marginBottom: '1rem', color: '#555' }}>
+    Date Input:
+    <input
+      type="date"
+      value={date}
+      onChange={(event) => setDate(event.currentTarget.value)}
+      style={{ marginLeft: '0.5rem', padding: '0.3rem', fontSize: '1rem' }}
+    />
+  </label>
+
+  <label style={{ marginBottom: '1rem', color: '#555' }}>
+    How did you feel today spiritually?
+    <input
+      type="number"
+      value={spiritual}
+      onChange={(event) => setSpiritual(parseInt(event.currentTarget.value))}
+      style={{ marginLeft: '0.5rem', padding: '0.3rem', fontSize: '1rem' }}
+    />
+  </label>
+
+  <button onClick={handleSubmit} style={{ backgroundColor: '#4CAF50', color: 'white', padding: '0.5rem 1rem', fontSize: '1rem', cursor: 'pointer' }}>Submit</button>
+</div>
+
   );
 }

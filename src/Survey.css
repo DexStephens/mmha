@@ -9,3 +9,9 @@
 .feelingEmoji:hover {
     cursor: pointer
 }
+
+.selectedEmoji {
+    background-color: gray;
+    font-size: 150px;
+    border-radius: 30%;
+}

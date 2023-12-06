@@ -1,13 +1,41 @@
 import HeadShot from "../assets/missionary.jpg";
-import emotionalData from "../LineChart/emotionLineData";
 import { options } from "../LineChart/emotionLineData";
 import { Line } from "react-chartjs-2";
 import StressAnxiety from "../personalizedResources/stressAnxiety";
 import SadnessDepression from "../personalizedResources/sadnessDepression";
 import WaysToConnect from "../personalizedResources/waysToConnect";
 import { Link } from "react-router-dom";
+import { SurveyContext } from "../main";
+import { useContext } from 'react'
 
 function ProfilePage() {
+  
+  const surveyContext = useContext(SurveyContext)
+
+  const emotionalData = {
+    labels: surveyContext?.surveys.dates,
+    datasets: [
+      {
+        label: "Emotional",
+        data: surveyContext?.surveys.emotional.scores,
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "Physical",
+        data: surveyContext?.surveys.physical.scores,
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+      {
+        label: "Spiritual",
+        data: surveyContext?.surveys.spiritual.scores,
+        borderColor: "rgb(119, 221, 119)",
+        backgroundColor: "rgba(119, 221, 119, 0.5)",
+      },
+    ],
+  };
+  
   return (
     <>
       <div

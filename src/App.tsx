@@ -42,3 +42,5 @@ function App() {
 }
 
 export default App;
+
+//NEEDSWORK: on subit of survey, show click after survey, adding scoring to the data, and updating the single person graphs

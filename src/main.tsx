@@ -15,31 +15,41 @@ const router = createBrowserRouter([
   }
 ])
 
-const fakeData: SurveyType[] = [
-  {
-    date: "12/3/2023",
-    score: 5
+const fakeData: SurveyType = {
+  dates: ["2023-11-29", "2023-11-30", "2023-12-1"],
+  emotional: {
+    scores: [5, 2, 3]
   },
-  {
-    date: "12/4/2023",
-    score: 3
+  physical: {
+    scores: [2, 4, 2]
+  },
+  spiritual: {
+    scores: [3, 5, 8]
   }
-]
+}
 
 interface SurveyType {
-  date: string;
-  score: number;
+  dates: string[];
+  emotional: {
+    scores: number[]
+  },
+  physical: {
+    scores: number[]
+  },
+  spiritual: {
+    scores: number[]
+  }
 }
 
 interface SurveyContext {
-  surveys: SurveyType[];
-  setSurveys: React.Dispatch<React.SetStateAction<SurveyType[]>>;
+  surveys: SurveyType;
+  setSurveys: React.Dispatch<React.SetStateAction<SurveyType>>;
 }
 
 export const SurveyContext = createContext<SurveyContext | undefined>(undefined)
 
-export const SurveyProvider = ({ children }) => {
-  const [surveys, setSurveys] = useState<SurveyType[]>(fakeData);
+export const SurveyProvider = ({ children }: { children: React.ReactNode}) => {
+  const [surveys, setSurveys] = useState<SurveyType>(fakeData);
 
   return (
     <SurveyContext.Provider value={{surveys, setSurveys}}>
@@ -55,7 +65,7 @@ interface RoleContext {
 
 const RoleContext = createContext<RoleContext | undefined>(undefined)
 
-export const RoleProvider = ({ children }) => {
+export const RoleProvider = ({ children } : { children: React.ReactNode}) => {
   const [role, setRole] = useState('missionary')
 
   return (
