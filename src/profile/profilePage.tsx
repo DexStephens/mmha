@@ -6,11 +6,10 @@ import SadnessDepression from "../personalizedResources/sadnessDepression";
 import WaysToConnect from "../personalizedResources/waysToConnect";
 import { Link } from "react-router-dom";
 import { SurveyContext } from "../main";
-import { useContext } from 'react'
+import { useContext } from "react";
 
 function ProfilePage() {
-  
-  const surveyContext = useContext(SurveyContext)
+  const surveyContext = useContext(SurveyContext);
 
   const emotionalData = {
     labels: surveyContext?.surveys.dates,
@@ -35,7 +34,7 @@ function ProfilePage() {
       },
     ],
   };
-  
+
   return (
     <>
       <div
@@ -49,7 +48,7 @@ function ProfilePage() {
           <img
             src={HeadShot}
             alt="Missionary Headshot"
-            style={{ width: "atuo", height: "75%", marginRight: "35px" }}
+            style={{ width: "auto", height: "75%", marginRight: "35px" }}
           />
           <br></br>
           <br></br>
@@ -60,7 +59,11 @@ function ProfilePage() {
               marginRight: "35px",
             }}
           >
-            <Link type="button" className="btn btn-outline-dark btn-sm" to="/survey">
+            <Link
+              type="button"
+              className="btn btn-outline-dark btn-lg border-2"
+              to="/survey"
+            >
               Take Daily Survey
             </Link>
           </div>
