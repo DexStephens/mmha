@@ -7,12 +7,21 @@ export function Survey() {
   const [physical, setPhysical] = useState('6')
   const [emotion, setEmotion] = useState(1)
   const [accomplishment, setAccomplishment] = useState('')
-  const [date, setDate] = useState('')
-  const [spiritual, setSpiritual] = useState(3)
+  const [date, setDate] = useState(getTodayDateString())
+  const [spiritual, setSpiritual] = useState(5)
 
   const surveyContext = useContext(SurveyContext)
 
   const navigate = useNavigate()
+
+  // Function to get today's date in the format "YYYY-MM-DD"
+  function getTodayDateString() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
   const handleSubmit = () => {
     surveyContext?.setSurveys({dates: [...surveyContext.surveys.dates, date], emotional: {
@@ -79,12 +88,15 @@ export function Survey() {
   </label>
 
   <label style={{ marginBottom: '1rem', color: '#555' }}>
-    How did you feel today spiritually?
+    How did you feel today spiritually on a scale from 1-10?
     <input
       type="number"
       value={spiritual}
       onChange={(event) => setSpiritual(parseInt(event.currentTarget.value))}
       style={{ marginLeft: '0.5rem', padding: '0.3rem', fontSize: '1rem' }}
+      step={1}
+      min={1}
+      max={10}
     />
   </label>
 
